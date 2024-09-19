@@ -520,7 +520,7 @@ int main()
 				cout << "4. Wyswietlenie calej ksiazki adresowej" << endl;
 				cout << "5. Edytowanie wybranej osoby po numerze ID" << endl;
 				cout << "6. Usuniecie wybranej osoby po numerze ID" << endl;
-				cout << endl << "-----------------UZYTKOWNIK---------------" << endl;
+				cout << endl << "---------------------------------------" << endl;
 				cout << "7. Zmiana hasla" << endl;
 				cout << "8. Wylogowanie" << endl;
 				cout << "9. Zakonczenie programu" << endl;
