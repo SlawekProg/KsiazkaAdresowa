@@ -446,44 +446,7 @@ void edycjaUtworzonegoWpisuPoId(vector <DaneOsobowe>& osoby)
 		zapisywanieAdresatowDoPliku(osoby,wybraneId);
 	}
 }
-void usuwanieWpisu(vector <DaneOsobowe>& osoby)
-{
-	fstream plik1;
-	plik1.open("KsiazkaAdresowa.txt", ios::in);
-	if (plik1.good() == false)
-	{
-		cout << "plik nie może być otwarty";
-		return;
-	}
-	fstream plik2;
-	plik2.open("AdresaciTymczasowi.txt", ios::out);
-	if (plik2.good() == false)
-	{
-		cout << "plik nie może być otwarty";
-		return;
-	}
 
-	cout << "Podaj numer ID osoby do usuniecia: ";
-	int numerID = wczytajLiczbe();
-	cout << "Czy napewno usunac osobe z ksiazki adresowej? t/n: ";
-	string decyzja = wczytajLinie();
-	string linia;
-	if (decyzja == "t")
-	{
-		while (getline(plik1, linia))
-		{
-			if (stoi(linia) != numerID) plik2 << linia << endl;
-		}
-		plik1.close();
-		plik2.close();
-		remove("KsiazkaAdresowa.txt");
-		rename("AdresaciTymczasowi.txt", "KsiazkaAdresowa.txt");
-		for (int i = 0; i < osoby.size(); i++)
-		{
-			if (osoby[i].idAdresata == numerID) osoby.erase(osoby.begin() + i);
-		}
-	}
-}
 
 int main()
 {
