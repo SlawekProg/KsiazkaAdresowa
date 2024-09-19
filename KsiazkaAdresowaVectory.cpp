@@ -366,6 +366,89 @@ void wypisanieCalejKsiazkiAdresowej(vector <DaneOsobowe>& osoby)
 	cin.get();
 }
 
+<<<<<<< HEAD
+=======
+{
+	int wybraneId, wybranaPozycjaDoZmiany, wybor = 0;
+	while (1)
+	{
+		system("cls");
+		cout << "Prosze wybrac opcje wyszukiwania lub podac ID osoby do edycji" << endl;
+		cout << "1. Wyszukiwanie osob po imieniu" << endl;
+		cout << "2. Wyszukiwanie osob po nazwisku" << endl;
+		cout << "3. Wyswietlenie calej ksiazki adresowej" << endl;
+		cout << "4. Podanie numeru ID" << endl;
+		cout << "9. Powrot do menu glownego" << endl;
+		wybor = wczytajLiczbe();
+
+		if (wybor == 1) wyszukiwanieOsobyPoImieniu(osoby);
+		else if (wybor == 2) wyszukiwanieOsobyPoNazwisku(osoby);
+		else if (wybor == 3) wypisanieCalejKsiazkiAdresowej(osoby);
+		else if (wybor == 4) cout << endl;
+		else if (wybor == 9) break;
+		cout << "Prosze podac numer ID osoby znalezionej" << endl;
+		cout << "Wybierz ID: ";
+		wybraneId = wczytajLiczbe();
+		for (int i = 0; i < osoby.size(); i++)
+		{
+			if (osoby[i].idAdresata == wybraneId)
+			{
+				while (1)
+				{
+					system("cls");
+					cout << "1. Imie :" << osoby[i].imie << endl;
+					cout << "2. Nazwisko :" << osoby[i].nazwisko << endl;
+					cout << "3. Numer telefonu :" << osoby[i].telefon << endl;
+					cout << "4. Adres email :" << osoby[i].email << endl;
+					cout << "5. Adres zamieszkania :" << osoby[i].adres << endl;
+					cout << "9. Wyjscie do poprzedniego menu" << endl;
+					cout << "Wybierz pozycje do zmiany z powyzszej listy" << endl;
+
+					wybranaPozycjaDoZmiany = wczytajLiczbe();
+					if (wybranaPozycjaDoZmiany == 1)
+					{
+						cout << "Wpisz nowe imie: ";
+						osoby[i].imie = wczytajLinie();
+						cout << "Pozycja imie zostala zmieniona" << endl;
+						Sleep(2000);
+					}
+					else if (wybranaPozycjaDoZmiany == 2)
+					{
+						cout << "Wpisz nowe nazwisko: ";
+						osoby[i].nazwisko = wczytajLinie();
+						cout << "Pozycja nazwisko zostala zmieniona" << endl;
+						Sleep(2000);
+					}
+					else if (wybranaPozycjaDoZmiany == 3)
+					{
+						cout << "Wpisz nowy numer telefonu: ";
+						osoby[i].telefon = wczytajLinie();
+						cout << "Pozycja numer telefonu zostala zmieniona" << endl;
+						Sleep(2000);
+					}
+					else if (wybranaPozycjaDoZmiany == 4)
+					{
+						cout << "Wpisz nowy adres email: ";
+						osoby[i].email = wczytajLinie();
+						cout << "Pozycja adres email zostala zmieniona" << endl;
+						Sleep(2000);
+					}
+					else if (wybranaPozycjaDoZmiany == 5)
+					{
+						cout << "Wpisz nowy adres zamieszkania: ";
+						osoby[i].adres = wczytajLinie();
+						cout << "Pozycja adres zamieszkania zostala zmieniona" << endl;
+						Sleep(2000);
+					}
+					else if (wybranaPozycjaDoZmiany == 9) break;
+				}
+			}
+		}
+		zapisywanieAdresatowDoPliku(osoby,wybraneId);
+	}
+}
+
+>>>>>>> edit_person
 
 int main()
 {
