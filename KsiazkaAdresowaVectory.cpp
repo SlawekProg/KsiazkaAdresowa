@@ -365,9 +365,8 @@ void wypisanieCalejKsiazkiAdresowej(vector <DaneOsobowe>& osoby)
 	cout << "Aby kontynuowac wcisnij ENTER" << endl;
 	cin.get();
 }
+void edycjaUtworzonegoWpisuPoId(vector <DaneOsobowe>& osoby)
 
-<<<<<<< HEAD
-=======
 {
 	int wybraneId, wybranaPozycjaDoZmiany, wybor = 0;
 	while (1)
@@ -447,8 +446,44 @@ void wypisanieCalejKsiazkiAdresowej(vector <DaneOsobowe>& osoby)
 		zapisywanieAdresatowDoPliku(osoby,wybraneId);
 	}
 }
+void usuwanieWpisu(vector <DaneOsobowe>& osoby)
+{
+	fstream plik1;
+	plik1.open("KsiazkaAdresowa.txt", ios::in);
+	if (plik1.good() == false)
+	{
+		cout << "plik nie może być otwarty";
+		return;
+	}
+	fstream plik2;
+	plik2.open("AdresaciTymczasowi.txt", ios::out);
+	if (plik2.good() == false)
+	{
+		cout << "plik nie może być otwarty";
+		return;
+	}
 
->>>>>>> edit_person
+	cout << "Podaj numer ID osoby do usuniecia: ";
+	int numerID = wczytajLiczbe();
+	cout << "Czy napewno usunac osobe z ksiazki adresowej? t/n: ";
+	string decyzja = wczytajLinie();
+	string linia;
+	if (decyzja == "t")
+	{
+		while (getline(plik1, linia))
+		{
+			if (stoi(linia) != numerID) plik2 << linia << endl;
+		}
+		plik1.close();
+		plik2.close();
+		remove("KsiazkaAdresowa.txt");
+		rename("AdresaciTymczasowi.txt", "KsiazkaAdresowa.txt");
+		for (int i = 0; i < osoby.size(); i++)
+		{
+			if (osoby[i].idAdresata == numerID) osoby.erase(osoby.begin() + i);
+		}
+	}
+}
 
 int main()
 {
@@ -485,7 +520,7 @@ int main()
 				cout << "4. Wyswietlenie calej ksiazki adresowej" << endl;
 				cout << "5. Edytowanie wybranej osoby po numerze ID" << endl;
 				cout << "6. Usuniecie wybranej osoby po numerze ID" << endl;
-				cout << endl << "---------------------------------------" << endl;
+				cout << endl << "--------------------------------" << endl;
 				cout << "7. Zmiana hasla" << endl;
 				cout << "8. Wylogowanie" << endl;
 				cout << "9. Zakonczenie programu" << endl;
